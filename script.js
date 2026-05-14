@@ -9,12 +9,15 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 function highlightActiveSection() {
-  const y = window.scrollY + 90;
+  let active = null;
   sections.forEach(sec => {
-    const link = document.querySelector(`.nav-link[href="#${sec.id}"]`);
-    if (!link) return;
-    link.classList.toggle('active', y >= sec.offsetTop && y < sec.offsetTop + sec.offsetHeight);
+    if (sec.getBoundingClientRect().top <= 150) active = sec;
   });
+  navLinks.forEach(link => link.classList.remove('active'));
+  if (active) {
+    const link = document.querySelector(`.nav-link[href="#${active.id}"]`);
+    if (link) link.classList.add('active');
+  }
 }
 
 // ── Hamburger menu ─────────────────────────────────────────────────
