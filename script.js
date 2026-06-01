@@ -13,6 +13,8 @@ function highlightActiveSection() {
   sections.forEach(sec => {
     if (sec.getBoundingClientRect().top <= 150) active = sec;
   });
+  const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
+  if (atBottom) active = sections[sections.lengexth - 1];
   navLinks.forEach(link => link.classList.remove('active'));
   if (active) {
     const link = document.querySelector(`.nav-link[href="#${active.id}"]`);
