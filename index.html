@@ -6,16 +6,17 @@
   <title>Emmanuel Cohen-Sabban — Développeur Full Stack</title>
   <meta content="Portfolio d'Emmanuel Cohen-Sabban, développeur Full Stack passionné par les architectures et les interfaces modernes, et l'automatisation CI/CD." name="description">
   <link href="assets/img/logo_favicon.ico" rel="icon">
-  <link href="style.css" rel="stylesheet">
+  <link href="style.css?v=3" rel="stylesheet">
   <script defer src="script.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
 
   <!-- ── Navigation ── -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a aria-label="Accueil" class="nav-logo" href="#hero">
-        <img alt="Logo" src="assets/img/logo_white_bg_transparent.png">
+        <span class="wordmark">ecs<span>.</span></span><span class="nav-caption">Emmanuel Cohen-Sabban</span>
       </a>
       <ul class="nav-links" id="nav-links" role="list">
         <li><a class="nav-link"    href="#about">À propos</a></li>
@@ -23,37 +24,37 @@
         <li><a class="nav-link" href="#projects">Projets</a></li>
         <li><a class="nav-link"  href="#contact">Contact</a></li>
       </ul>
-      <button aria-expanded="false" aria-label="Ouvrir le menu" class="hamburger" id="hamburger">
+      <button aria-controls="nav-links" aria-expanded="false" aria-label="Ouvrir le menu" class="hamburger" id="hamburger">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
-  <!-- ── Hero ── -->
-  <section class="hero" id="hero">
+  <main id="main">
+  <section aria-labelledby="hero-heading" class="hero" id="hero">
     <div class="hero-content">
-      <p class="hero-greeting">Bonjour, et bienvenue sur mon site, je suis</p>
-      <h1 class="hero-name">Emmanuel <span class="accent">Cohen-Sabban</span></h1>
-      <h2 class="hero-title"><span id="typewriter"></span></h2>
-      <p class="hero-description">
-        Je conçois et développe des applications de bout en bout — webapp moderne, back-end robuste, API performante, et CI/CD sécurisé.
-      </p>
+      <p class="eyebrow"><span class="status-dot"></span> Développeur Full Stack · Paris</p>
+      <h1 id="hero-heading">Je donne vie<br>à vos projets<br><span class="accent">web.</span></h1>
+      <p class="hero-description">Moi, c’est Emmanuel, développeur Full Stack. Je conçois des applications simples à utiliser et fiables, de l’interface au serveur.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="#projects">Voir mes projets</a>
-        <a class="btn btn-outline"  href="#contact">Me contacter</a>
+        <a class="btn btn-primary" href="#projects">Découvrir mes projets <span aria-hidden="true">↗</span></a>
+        <a class="btn btn-outline" href="#contact">Discutons ensemble <span aria-hidden="true">→</span></a>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="hero-ring">
-        <img alt="Logo" class="hero-logo" src="assets/img/logo_black_bg_transparent.png">
-      </div>
-    </div>
+    <aside aria-label="Présentation d’Emmanuel" class="profile-card">
+      <div class="profile-top"><span>Un peu de moi</span><span aria-hidden="true">↗</span></div>
+      <div class="profile-photo"><img alt="Portrait d’Emmanuel Cohen-Sabban" height="104" src="assets/img/photo_cv.png" width="104"></div>
+      <p class="profile-name">Emmanuel <br>Cohen-Sabban<span class="accent">.</span></p>
+      <p class="profile-description">Du premier composant <br>au dernier déploiement.</p>
+      <div class="profile-status"><span class="status-dot"></span> Ouvert aux opportunités</div>
+    </aside>
+    <div class="hero-bottom"><span>De l’interface à l’infrastructure</span><div>Front-end <span>/</span> Back-end <span>/</span> DevOps</div><a aria-label="Découvrir la suite" href="#about">↓</a></div>
   </section>
 
   <!-- ── À propos ── -->
   <section class="section about" id="about">
     <div class="section-container">
-      <h2 class="section-title reveal">À <span class="accent">propos</span></h2>
+      <div class="section-heading reveal"><p class="eyebrow">01 / À propos</p><h2 class="section-title">Le sens du détail.<br>La vision d’ensemble.</h2></div>
       <div class="about-content reveal">
         <div class="about-text">
           <p>
@@ -77,7 +78,7 @@
             <span class="info-value">Français · Anglais · Hébreu</span>
           </div>
         </div>
-        <a class="btn btn-primary" download href="#">Télécharger mon CV</a>
+        <a class="text-link" download="CV-Emmanuel-Cohen-Sabban.pdf" href="assets/files/CV.pdf">Télécharger mon CV <span aria-hidden="true">↓</span></a>
       </div>
     </div>
   </section>
@@ -85,7 +86,7 @@
   <!-- ── Compétences ── -->
   <section class="section skills" id="skills">
     <div class="section-container">
-      <h2 class="section-title reveal">Mes <span class="accent">compétences</span></h2>
+      <div class="section-heading reveal"><p class="eyebrow">02 / Compétences</p><h2 class="section-title">Une stack complète.<br>Des bases solides.</h2><p class="section-description">Les bons outils, à chaque étape du projet.</p></div>
       <div class="skills-grid">
 
         <div class="skill-card reveal">
@@ -115,11 +116,12 @@
           <div class="skill-tags">
             <span class="tag">Node.js</span>
             <span class="tag">Express</span>
-            <span class="tag">Java</span>
+            <span class="tag">NestJS</span>
             <span class="tag">PHP</span>
+            <span class="tag">Symfony</span>
+            <span class="tag">Java</span>
             <span class="tag">Spring Boot</span>
             <span class="tag">Maven</span>
-            <span class="tag">Symfony</span>
           </div>
         </div>
 
@@ -150,7 +152,8 @@
             <span class="tag">Git</span>
             <span class="tag">Docker</span>
             <span class="tag">Linux</span>
-            <span class="tag">Dokploy</span>
+            <span class="tag">Kubernetes</span>
+            <span class="tag">Kafka</span>
           </div>
         </div>
 
@@ -161,24 +164,17 @@
   <!-- ── Projets ── -->
   <section class="section projects" id="projects">
     <div class="section-container">
-      <h2 class="section-title reveal">Mes <span class="accent">projets</span></h2>
+      <div class="section-heading reveal"><p class="eyebrow">03 / Projets</p><h2 class="section-title">Du code. Du concret.</h2><p class="section-description">Une sélection de projets, de l’interface à l’architecture.</p></div>
       <div class="projects-grid">
 
-        <article class="project-card reveal">
+        <article class="project-card reveal"><div aria-hidden="true" class="project-art art-portfolio"><div class="mini-browser"><div class="mini-bar">ecs. <span>À propos &nbsp; Projets &nbsp; Contact</span></div><div class="mini-content">Des idées claires.<br><em>Du code concret.</em><i></i></div></div></div>
           <div class="project-header">
             <span class="project-number">01</span>
-            <div class="project-links">
-              <a aria-label="Voir sur GitHub" class="icon-link" href="#" title="GitHub">
-                <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-              </a>
-              <a aria-label="Voir la démo" class="icon-link" href="#" title="Démo">
-                <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
-              </a>
-            </div>
+
           </div>
           <h3 class="project-title">Portfolio Personnel</h3>
           <p class="project-description">
-            Site portfolio entièrement réalisé en HTML, CSS et JavaScript — animations au scroll, menu responsive et effet typewriter.
+            Une vitrine personnelle épurée, réalisée en HTML, CSS et JavaScript, avec une mise en page responsive et une navigation accessible.
           </p>
           <div class="project-tags">
             <span class="tag tag-sm">HTML</span>
@@ -187,17 +183,10 @@
           </div>
         </article>
 
-        <article class="project-card reveal">
+        <article class="project-card reveal"><div aria-hidden="true" class="project-art art-app"><div class="mini-dashboard"><div class="mini-sidebar">▦<br>≡<br>◷</div><div class="mini-data"><b>Vue d’ensemble</b><div class="mini-stats"><i></i><i></i><i></i></div><div class="mini-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
           <div class="project-header">
             <span class="project-number">02</span>
-            <div class="project-links">
-              <a aria-label="Voir sur GitHub" class="icon-link" href="#" title="GitHub">
-                <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-              </a>
-              <a aria-label="Voir la démo" class="icon-link" href="#" title="Démo">
-                <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
-              </a>
-            </div>
+
           </div>
           <h3 class="project-title">Application Web Full Stack</h3>
           <p class="project-description">
@@ -210,17 +199,10 @@
           </div>
         </article>
 
-        <article class="project-card reveal">
+        <article class="project-card reveal"><div aria-hidden="true" class="project-art art-services"><div class="service-node">API Gateway</div><div class="service-line"></div><div class="service-row"><span>Auth</span><span>Service</span><span>Data</span></div><p>Des services connectés.</p></div>
           <div class="project-header">
             <span class="project-number">03</span>
-            <div class="project-links">
-              <a aria-label="Voir sur GitHub" class="icon-link" href="#" title="GitHub">
-                <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-              </a>
-              <a aria-label="Voir la démo" class="icon-link" href="#" title="Démo">
-                <svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
-              </a>
-            </div>
+
           </div>
           <h3 class="project-title">Micro-services Node.js</h3>
           <p class="project-description">
@@ -240,7 +222,7 @@
   <!-- ── Contact ── -->
   <section class="section contact" id="contact">
     <div class="section-container">
-      <h2 class="section-title reveal">Me <span class="accent">contacter</span></h2>
+      <p class="eyebrow reveal">04 / Contact</p><h2 class="section-title reveal">Et si on construisait<br><span class="accent">la suite ensemble ?</span></h2>
       <p class="contact-intro reveal">
         Disponible pour toute opportunité, collaboration ou simple échange. Retrouvez-moi sur :
       </p>
@@ -252,7 +234,7 @@
           </div>
           <div class="contact-card-body">
             <span class="contact-card-label">LinkedIn</span>
-            <span class="contact-card-value">linkedin.com/in/emmanuelcohen</span>
+            <span class="contact-card-value">Échangeons sur LinkedIn</span>
           </div>
           <svg class="contact-card-arrow" fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
         </a>
@@ -263,7 +245,7 @@
           </div>
           <div class="contact-card-body">
             <span class="contact-card-label">GitHub</span>
-            <span class="contact-card-value">github.com/emmanuelcohen</span>
+            <span class="contact-card-value">github.com/ManuHub26</span>
           </div>
           <svg class="contact-card-arrow" fill="none" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
         </a>
@@ -283,11 +265,13 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ── Footer ── -->
   <footer class="footer">
     <div class="footer-inner">
-      <img alt="Logo" class="footer-logo" src="assets/img/logo_black_bg_transparent.png">
-      <p class="footer-copy">© 2025 Emmanuel Cohen-Sabban — Développeur Full Stack</p>
+      <a aria-label="Retour en haut" class="wordmark" href="#hero">ecs<span>.</span></a>
+      <p class="footer-copy">© <span id="year">2026</span> Emmanuel Cohen-Sabban — Développeur Full Stack</p>
     </div>
   </footer>
 </body>

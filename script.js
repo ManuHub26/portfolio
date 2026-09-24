@@ -1,79 +1,55 @@
-// ── Navbar : effet au scroll ───────────────────────────────────────
-const navbar   = document.getElementById('navbar');
+const navbar = document.getElementById('navbar');
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
-
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
-  highlightActiveSection();
-}, { passive: true });
+const hamburger = document.getElementById('hamburger');
+const navLinksEl = document.getElementById('nav-links');
 
 function highlightActiveSection() {
   let active = null;
-  sections.forEach(sec => {
-    if (sec.getBoundingClientRect().top <= 150) active = sec;
+  sections.forEach(section => {
+    if (section.getBoundingClientRect().top <= 160) active = section;
   });
-  const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
-  if (atBottom) active = sections[sections.lengexth - 1];
-  navLinks.forEach(link => link.classList.remove('active'));
-  if (active) {
-    const link = document.querySelector(`.nav-link[href="#${active.id}"]`);
-    if (link) link.classList.add('active');
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+    active = sections[sections.length - 1];
   }
+  navLinks.forEach(link => {
+    const current = !!active && link.hash === `#${active.id}`;
+    link.classList.toggle('active', current);
+    if (current) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
 }
+window.addEventListener('scroll', highlightActiveSection, { passive: true });
+highlightActiveSection();
 
-// ── Hamburger menu ─────────────────────────────────────────────────
-const hamburger   = document.getElementById('hamburger');
-const navLinksEl  = document.getElementById('nav-links');
-
-hamburger.addEventListener('click', () => {
-  const open = navLinksEl.classList.toggle('open');
+function setMenu(open) {
+  navLinksEl.classList.toggle('open', open);
   hamburger.classList.toggle('open', open);
-  hamburger.setAttribute('aria-expanded', open);
-});
-
-navLinksEl.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinksEl.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-  });
-});
-
-// ── Typewriter ─────────────────────────────────────────────────────
-const typeEl  = document.getElementById('typewriter');
-const phrases = ['Développeur Full Stack', 'Développeur Back-end', 'Développeur Front-end', 'DevOps'];
-let pIdx = 0, cIdx = 0, deleting = false;
-
-(function type() {
-  const phrase = phrases[pIdx];
-  typeEl.textContent = deleting
-    ? phrase.slice(0, --cIdx)
-    : phrase.slice(0, ++cIdx);
-
-  if (!deleting && cIdx === phrase.length) {
-    setTimeout(() => { deleting = true; type(); }, 2200);
-    return;
+  hamburger.setAttribute('aria-expanded', String(open));
+  hamburger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+}
+hamburger.addEventListener('click', () => setMenu(hamburger.getAttribute('aria-expanded') !== 'true'));
+navLinks.forEach(link => link.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && hamburger.getAttribute('aria-expanded') === 'true') {
+    setMenu(false);
+    hamburger.focus();
   }
-  if (deleting && cIdx === 0) {
-    deleting = false;
-    pIdx = (pIdx + 1) % phrases.length;
-  }
-  setTimeout(type, deleting ? 55 : 85);
-})();
-
-// ── Scroll reveal via IntersectionObserver ─────────────────────────
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const el  = entry.target;
-    const idx = parseInt(el.dataset.delay ?? '0', 10);
-    setTimeout(() => el.classList.add('visible'), idx * 120);
-    observer.unobserve(el);
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.reveal').forEach((el, i) => {
-  el.dataset.delay = i;
-  observer.observe(el);
 });
+document.addEventListener('click', event => {
+  if (!navbar.contains(event.target)) setMenu(false);
+});
+window.matchMedia('(max-width: 700px)').addEventListener('change', () => setMenu(false));
+
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+}
+document.getElementById('year').textContent = new Date().getFullYear();
