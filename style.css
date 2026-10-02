@@ -143,6 +143,7 @@ a:focus-visible,button:focus-visible {
 }
 
 .nav-link {
+  white-space:nowrap;
   font-size:13px;
   color:var(--muted);
   padding:12px 0;
@@ -173,6 +174,7 @@ a:focus-visible,button:focus-visible {
   height:2px;
   margin:5px 0;
   background:var(--ink);
+  transition:transform .25s ease, opacity .18s ease;
 }
 
 .hero {
@@ -295,8 +297,8 @@ a:focus-visible,button:focus-visible {
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:right center;
-  transform:scale(1.15) translate(-6%, 6%);
+  object-position:center;
+  transform:none;
 }
 
 .profile-name {
@@ -700,7 +702,7 @@ a:focus-visible,button:focus-visible {
 
 .contact-grid {
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:16px;
 }
 
@@ -754,6 +756,40 @@ a:focus-visible,button:focus-visible {
   color:var(--accent);
 }
 
+
+/* Le rendez-vous est l’action principale de la section contact. */
+.contact-card-booking {
+  grid-column:1 / -1;
+  padding:28px;
+  background:var(--accent);
+  border-color:var(--accent);
+  color:white;
+  box-shadow:0 8px 24px #365fc425;
+}
+
+.contact-card-booking:hover {
+  background:#284b9f;
+}
+
+.contact-card-booking .contact-card-icon,
+.contact-card-booking .contact-card-arrow,
+.contact-card-booking .contact-card-value {
+  color:white;
+}
+
+.contact-card-booking .contact-card-label {
+  font-size:20px;
+}
+
+.contact-card-booking .contact-card-value {
+  font-size:13px;
+}
+
+.contact-card-booking .contact-card-icon svg {
+  width:28px;
+  height:28px;
+}
+
 .footer {
   border-top:1px solid var(--line);
   padding:28px 32px;
@@ -798,6 +834,12 @@ a:focus-visible,button:focus-visible {
 }
 
 @media(max-width:950px) {
+  .nav-links {
+    gap:18px;
+  }
+  .nav-caption {
+    display:none;
+  }
   .hero {
     grid-template-columns:1fr 235px;
     gap:35px;
@@ -847,7 +889,7 @@ a:focus-visible,button:focus-visible {
     display:block;
   }
   .nav-links {
-    display:none;
+    display:flex;
     position:absolute;
     top:73px;
     left:0;
@@ -858,9 +900,41 @@ a:focus-visible,button:focus-visible {
     flex-direction:column;
     align-items:stretch;
     gap:4px;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:translateY(-10px);
+    box-shadow:0 14px 24px #24324a0a;
+    transition:opacity .22s ease, transform .25s ease, visibility 0s .25s;
   }
   .nav-links.open {
-    display:flex;
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateY(0);
+    transition-delay:0s;
+  }
+  .nav-links li {
+    opacity:0;
+    transform:translateY(-6px);
+    transition:opacity .18s ease, transform .22s ease;
+  }
+  .nav-links.open li {
+    opacity:1;
+    transform:translateY(0);
+    transition-delay:calc(var(--menu-order, 0) * 35ms + 40ms);
+  }
+  .nav-links li:nth-child(2) {
+    --menu-order:1;
+  }
+  .nav-links li:nth-child(3) {
+    --menu-order:2;
+  }
+  .nav-links li:nth-child(4) {
+    --menu-order:3;
+  }
+  .nav-links li:nth-child(5) {
+    --menu-order:4;
   }
   .nav-link {
     display:block;
